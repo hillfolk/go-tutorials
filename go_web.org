@@ -1,7 +1,0 @@
-#+TITLE:Go Web Dev
-#+STARTUP:showall
-
-
-* go Web 개발
-
-
