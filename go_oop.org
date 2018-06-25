@@ -1,0 +1,20 @@
+#+TITLE:Go 객체 지향
+#+STARTUP:showall
+
+** Go 프로그램 구조
+Go 는 struct 와 function 으로 이루어 진다. function 은 recever 를 통해 struct 와 연결할 수 있다. 
+
+** struct
+
+#+BEGIN_SRC
+  
+  var obj = Rectangle{"obj","value"}
+
+#+BEGIN_END
+
+
+** 포인터의 활용
+
+
+
+** 인터페이스

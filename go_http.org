@@ -1,4 +1,4 @@
-#+TITLE:Go Web Dev
+#+TITLE:Go Web 개발
 #+STARTUP:showall
 
 참고: https://cryptic.io/go-http/
