@@ -4,6 +4,28 @@
 ** Go 프로그램 구조
 Go 는 struct 와 function 으로 이루어 진다. function 은 recever 를 통해 struct 와 연결할 수 있다. 
 
+** Pointer
+   - 포인터 선언
+#+BEGIN_SRC golnag
+
+var objPtr *int // 초기화는 nil
+var objPtr = new(int) //메모리 주소 
+
+//값의 대입
+*numPtr = 1
+
+
+
+// 값을 가져오기
+fmt.Println(*objPtr) // 값을 가져오기
+
+// 주소를 가져오기
+fmt.Println(objPtr) // 포인터 변수에 저장된 메모리 출력
+fmt.Println(&obj) // 변수가 저장된 메모리 주소 출력
+
+#+END_SRC
+
+
 ** struct
 
 #+BEGIN_SRC
@@ -11,6 +33,11 @@ Go 는 struct 와 function 으로 이루어 진다. function 은 recever 를 통
   var obj = Rectangle{"obj","value"}
 
 #+BEGIN_END
+
+** func
+
+
+** 리시버
 
 
 ** 포인터의 활용
