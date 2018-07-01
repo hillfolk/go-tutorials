@@ -1,7 +1,5 @@
-#+TITLE:Readme
+#+TITLE:Go Tutorial
 #+STARTUP:showall
-
-* Go Tutorial
 
 ** go_http.org
    Go Web Programming Tutorial
