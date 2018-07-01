@@ -6,6 +6,9 @@ Go 는 struct 와 function 으로 이루어 진다. function 은 recever 를 통
 
 ** Pointer
    - 포인터 선언
+   - 연산 불가
+   - 대입 불가
+
 #+BEGIN_SRC golnag
 
 var objPtr *int // 초기화는 nil
@@ -35,12 +38,231 @@ fmt.Println(&obj) // 변수가 저장된 메모리 주소 출력
 #+BEGIN_END
 
 ** func
+   - 함수의 정의 위치는 제약이 없다.
+   - 복수의 리턴 값을 가질 수 있다.
+#+BEGIN_SRC
+   // 복수의 리턴
+   func Name(arg1,arg2  type) (return_type,return_type) {
+   
+    retrun arg1+arg2 ,arg2 - arg1
+   }
+#+END_SRC
+   - 복수 리턴 변수에서 생략하고 싶은 변수의 경우 _ 를 이용해서 생략할 수 있다.
+   - 리턴 변수를 지정할수 있다.
+#+BEGIN_SRC
+   //리턴 변수 지정 
+   func Name(arg1,arg2  type) (ret_val return_type) {
+
+   ret_val = arg1 + arg2
+   
+    retrun 
+   }
+#+END_SRC
+   - 가변인자를 사용하여 함수의 유동적으로 매개변수를 사용할 수 있다.
+#+BEGIN_SRC
+   // 가변 인자를 사용 
+   func Name(arg1  ...type) return_type {
+
+   ret_val = arg1 + arg2
+   
+    retrun 
+   }
+
+  func main(){
+r := name(1,2,3,4,5)
+}
+#+END_SRC
+
+#+BEGIN_SRC
+   // 가변 인자를 사용 
+   func Name(arg1  ...type) return_type {
+
+  fmt.println(arg1)
+   
+    retrun arg1[0]
+   }
+
+  func main(){
+n := []int{1,2,3,4,5}
+r := name(n...)
+}
+#+END_SRC
+   - 재귀호출
+     
+#+BEGIN_SRC
+
+#+BEGIN_SRC
+   // 재귀 호출
+ package main
+
+import "fmt"
+
+func factorial(n uint64) uint64 {
+    if n == 0 {
+      return 1
+     }
+     return n * factorial(n - 1)
+}
+
+func main(){
+    fmt.Println(factorial(5))
+}
+
+#+END_SRC
+
+   - 함수를 변수 저장
+#+BEGIN_SRC
+
+func sum(a int, b int) int {
+  return a + b
+}
+
+func main()  {
+   var hello func(a int, b int)int = sum
+
+   world := sum
+
+
+   fmt.Println(hello(1,2))
+   fmt.Println(world(1,2))
+}
+
+#+END_SRC
+
+   - 함수를 슬라이스와 맵에 저장
+#+BEGIN_SRC
+   func sum(a int, b int) int {
+    return a +b 
+   }
+
+   func diff(a int, b int) int {
+   return a - b
+   }
+
+   func main(){
+   f := []func(int,int)int{sum,diff} // 함수를 저장 가능한 슬라이스 생성 
+                                     // 함수로 초기화
+
+   fmt.Println(f[0](1,2))
+   fmt.Println(f[1](1,2))
+
+
+   m := map[string]func(int,int)int{ //함수를 저장 할 수 있는 맵을 생성
+                                     // 함수로 초기화 
+   "sum":sum,
+   "diff":diff,
+   }
+
+    fmt.Println(f["sum"](1,2))
+    fmt.Println(f["diff"](1,2))
+
+ }
+#+END_SRC
+   - 익명 함수 사용 (defer , 고루틴에 주로 사용)
+#+BEGIN_SRC
+
+import "fmt"
+
+func main(){
+   func() {
+   fmt.Println("Hello, world!")
+}()
+
+func(s string) {
+    fmt.Print(s)
+}("Hello, world!")
+
+r := func(a int, bint) int{
+   return a + b
+}(1,2)
+
+fmt.Println(r)
+
+}
+
+#+END_SRC
+    - 클로저(closure) 사용하기 
+    - 클로저를 사용하면 지역변수가 소멸 되지 않고 나중에 함수가 호출할 때마다 계속 가져다 쓸수 있다. 클로저는 함수가 선언될 환경이 유지 된다.
+#+BEGIN_SRC
+
+func main() {
+  a,b := 3,5
+
+  f := func(x int) int{
+  return a * x + b
+}
+
+ y := f(5)
+
+  fmt.Println(y)
+}
+
+func main() {
+  a,b := 3,5
+
+  f := func(a ,b int) int{
+  return a + b 
+}
+
+ r := sum(1,2)
+
+  fmt.Println(r)
+}
+
+func calc() func(x int) int {
+ a,b := 3,4
+
+ return func(x int)int {
+  return a*x+b // 클러저이므로 함수를 호출할 때마다 변수 a 와 b 의 값을 사용할 수 있음
+}
+ // 익명 함수를 리천
+}
+
+func main(){
+  f:= calc() // calc 함수를 실행하여 리턴 값으로 나온 클로저를 변수에 저장
+}
+
+#+END_SRC
 
 
 ** 리시버
-
+   
 
 ** 포인터의 활용
+   - go 에서는 포인터형 변수를 선언 할수 있다.
+   - 포인터형 변수는 new 함수로 메모리를 할당해야 한다.
+   - 포인터 형 변수에는 *를 타입에 붙여서 선언 한다.
+   - 포인터형 변수를 역참조 할때는 변수명에 *를 앞에 사용한다.
+   - 일반 변수에 참조(&) 를 사용하면 포인터형 변수에 대입할 수 있다.
+   - 포인터형 변수를 매개 변수로 사용할 경우 Call by reference 를 구현 할수 있다.
+
+ 
+
+#+BEGIN_SRC
+var numPtr *int = new(int)
+
+fmt.Println(numPtr)// 메모리 주소가 출력 된다. 
+
+*numPtr = 1 // 역참조로 포인터형 변수에 값을 대입 
+
+fmt.Println(*numPtr) // 1 포인터형 변수에서 값을 가져 온다. 
+
+num := 1
+
+*numPtr = &num // 참조를 사용해서 값을 대입
+
+func hello(n *int) {
+  *n = 2
+}
+
+var in int = 1
+
+hello (&n) // n 의 메모리 주소를 넘김
+
+fmt.Println(n) // 2 출력 
+
+
+#+END_SRC
 
 
 

@@ -1,2 +1,6 @@
 #+TITLE:Go RPC 서버 만들기
 #+STARTUP:showall
+
+** RPC 프로그램 
+
+** 
