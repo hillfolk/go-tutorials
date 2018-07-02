@@ -223,9 +223,6 @@ func main(){
 }
 
 #+END_SRC
-
-
-** 리시버
    
 
 ** 포인터의 활용
@@ -264,6 +261,84 @@ fmt.Println(n) // 2 출력
 
 #+END_SRC
 
+** 구조체 임베딩 
+   - Go 언어는 상속을 제공하지 않는다. 구조체 임베딩(Embedding) 을 사용하여 상속의 효과를 낼 수 있다.
+   - 구조체 임베딩은 상속과 유사한 기능을 하지만 Go 언어 에서는 인터페이스를 활용하는 것을 권장한다.
 
+    
+#+BEGIN_SRC
+
+type Person struct {
+    name string
+    age int
+}
+
+
+func (p *Person) greeting(){
+   fmt.Println("Hello~")
+}
+
+type Student struct { 
+   p Person // 변수명 지정 has-a 관계
+   school string
+   grade int
+}
+
+type Student struct {
+   Person // 변수명을 지정하지 않음  구조체 임베딩 is-a 관계
+   school string
+   grade int
+}
+
+
+func main() {
+    var s Student
+    // 구조체 임베딩 미사용
+    s.p.greeting() // Hello ~
+    // 구조체 임베딩 사용시 
+    s.Person.greeting() // Hello ~
+    s.greeting() //Hello ~
+
+
+}
+
+// 매서드 오버라이드 
+func (p *Student) greeting(){ 
+    fmt.Println("Hello Students~")
+}
+
+func main(){
+   s.Person.greeting() // Hello ~
+    s.greeting() //Hello Students~
+
+}
+
+#+END_SRC
 
 ** 인터페이스
+   - 인터페이스는 메서드의 선언의 집합이다.
+   - 인터페이스에는 구현이 포함되지 않는다.
+
+#+BEGIN_SRC
+
+package main
+
+import "fmt"
+
+type hello interface {
+ 
+}
+
+
+func main() {
+ var h hello // 인터페이스 선언
+ fmt.Println(h) // <nil> 빈 인터페이스이므로 nil 이 출력됨
+
+
+}
+
+
+
+#+END_SRC
+
+
