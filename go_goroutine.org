@@ -1,0 +1,2 @@
+#+TITLE:Go 동시성 프로그래밍 하기
+#+STARTUP:showall
