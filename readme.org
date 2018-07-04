@@ -1,13 +1,15 @@
 #+TITLE:Go Tutorial
 #+STARTUP:showall
 
-** file:go_oop.org
-   Go Object Oriented
 
-** file:go_http.org
-   Go Web Programming Tutorial
+** Go Object Oriented Programming
+   file:go_oop.org
 
-** file:go_goroutione.org
-   Goroutine
+** Go Web Programming Tutorial
+   file:go_http.org
+
+** Goroutine
+   file:go_goroutione.org
+
 
 
