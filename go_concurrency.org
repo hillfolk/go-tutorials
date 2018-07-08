@@ -26,16 +26,47 @@ func sum(a int, b int, c  chan int) {
 func main() {
     c := make(chan int)
 
-
     go sum(1 ,2 ,c)
     n := <-c
     fmt.Println(n)
 }
 
+#END_SRC
+
 
 ** range close 사용하기
 
+   - close 는 채널을 닫을 수 있으며 이미 닫은 채널을 다으면 패닉 발생
+   - 채널을 닫으면 range 푸르가 종료 됩니다.
+   - 채널이 열려 있고 값이 들어 오지 않으면 range 는 실행되지 않고 계속 대기 한다.
+
+#+BEGIN_SRC
+
+package main
+
+import "fmt"
+
+func main()
+
+    c:= make(chan int)
+    go func() {
+    for i := 0; i >5 i++{
+    c <- i // 채널에 값을 보냄
+    }
+    close(c)
+}()
+
+   for i:= range c {
+    fmt.Println(i)
+    }
+}
+
+#+END_SRC
+
+
 ** Select 사용하기
+
+
 
 
 ** case 사용하기 
