@@ -6,30 +6,13 @@
    - 다른 언어의 쓰레드보다 운영체제의 리소스를 적게 사용한다.
  
 ** 클로저
-#+BEGIN_SRC
-
-package main
-
-import "fmt"
-
-func sum(a int, b int, c  chan int) {
-  c <- a + b
-}
-
-func main() {
-    c := make(chan int)
-
-
-    go sum(1 ,2 ,c)
-    n := <-c
-    fmt.Println(n)
-}
-
-#+END_SRC
+   - 클로저를 고루틴으로 실행할 때 반복문에 의해 바뀌는 변수는 반드시 매개변수로 넘겨 준다.
 
 ** 멀티코어 활용
    
 ** 체널 사용
+   - 채널은 고루틴끼리 정보를 교환하고 실행의 흐름을 동기화하기 위해 사용한다.
+
 #+BEGIN_SRC
 
 package main
