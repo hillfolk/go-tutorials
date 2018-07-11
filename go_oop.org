@@ -333,8 +333,6 @@ type hello interface {
 func main() {
  var h hello // 인터페이스 선언
  fmt.Println(h) // <nil> 빈 인터페이스이므로 nil 이 출력됨
-
-
 }
 
 
