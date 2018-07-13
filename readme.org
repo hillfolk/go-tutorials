@@ -2,14 +2,17 @@
 #+STARTUP:showall
 
 
-** Go Object Oriented Programming
+** Go Object Oriented Programming 
    file:go_oop.org
 
-** Go Web Programming Tutorial
+** Go Web Programming
    file:go_http.org
 
-** Goroutine
-   file:go_goroutione.org
+** Go Concurrency
+   file:go_concurrency.org
+
+** Go Command Line Interface
+   file:go_cli.org
 
 
 
