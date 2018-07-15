@@ -3,5 +3,82 @@
 
 ** Command-line flags
 
+go 에서는 Command line 프로그램을 지원하기 위해 flag 패키지를 지원한다. 
+flag 패키지는 기본 도움말을 지원하는 -h -help 기능을 지원한다.
+
+
+flag.Parse() 명령을 수행하여 파싱을 수행하면 각 이름의 값을 받을 수 있다.
+
+https://golang.org/pkg/flag/
+
+func String(name string, value string, usage string) *string : 문자열 지원
+func BoolVar(p *bool, name string, value bool, usage string) : 참/ 거짓 지원 
+func Int(name string, value int, usage string) *int : 정수형 지원 
+
+#+NAME: Flag 예제
+
+#+BEGIN_SRC golang
+package main
+
+import (
+	"flag"
+	"fmt"
+)
+
+
+var name = flag.String("name","World", "A name to say hello to.")
+
+var spanish bool
+
+func init() {
+	flag.BoolVar(&spanish, "spanish" ,false, "Use Spanish language.")
+	flag.BoolVar(&spanish, "s", false, "Use Spanish language.")
+}
+
+func main() {
+	flag.Parse()
+	if spanish == true {
+		fmt.Printf("Hola %s!\n", *name)
+	} else {
+		fmt.Printf("Hello %s!\n", *name)
+	}
+}
+
+
+#+END_SRC
+
+#+NAME: Flag 실행화면
+#+BEGIN_SRC
+
+➜  go_cli git:(develop) ✗ go run flag_cli.go -name golang   
+Hello golang!
+➜  go_cli git:(develop) ✗ go run flag_cli.go -name golang -s
+Hola golang!
+
+Usage of /tmp/go-build148828997/b001/exe/flag_cli:
+  -name string
+    	A name to say hello to. (default "World")
+  -s	Use Spanish language.
+  -spanish
+    	Use Spanish language.
+exit status 2
+➜  go_cli git:(develop)  go run flag_cli.go -name golang -h   
+Usage of /tmp/go-build976692735/b001/exe/flag_cli:
+  -name string
+    	A name to say hello to. (default "World")
+  -s	Use Spanish language.
+  -spanish
+    	Use Spanish language.
+exit status 2
+➜  go_cli git:(develop) 
+
+
+
+#+END_SRC
+
+
+
+
+
 
 ** Command-line framework
