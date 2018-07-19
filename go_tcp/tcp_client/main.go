@@ -10,7 +10,7 @@ import (
 func main() {
 	client, err := net.Dial("tcp","127.0.0.1:8000")
 
-	if != nil {
+	if err != nil {
 		fmt.Println(err)
 
 		return
@@ -42,11 +42,11 @@ func main() {
 		i := 0
 
 		for {
-			s := "Hello" + strconv.ltoa(i)
+			s := "Hello" + strconv.Itoa(i)
 
 			_,err := c.Write([]byte(s))
 
-			if err := nil {
+			if err != nil {
 				fmt.Println(err)
 				return 
 			}

@@ -19,7 +19,7 @@ func requestHandler(c net.Conn){
 
 		fmt.Println(string(data[:n])) //byte 데이터 문자열 출력
 
-		_,err = c.Wirte(data[:n])
+		_,err = c.Write(data[:n])
 
 		if err != nil {
 			fmt.Println(err)
