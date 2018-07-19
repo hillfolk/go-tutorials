@@ -1,2 +1,138 @@
 #+TITLE:Go TCP/IP 서버 만들기
 #+STARTUP:showall
+
+** Net Package 제공 함수
+   *** TCP 서버용
+   1. func Listen(net, laddr string)(Listener,error):프로토콜, IP주소 , 포트 번호를 설정하고 네트워크 연결을 대기 합니다.
+   2. func (I *TCPListener) Accept() (Conn,error): 클라이언트가 연결되면 TCP 연결을 반환 한다.
+   3. func (I *TCPListener) Close() error: TCP 연결 대기를 닫는다.
+   4. func (c *TCPConn) Read(b []byte)(int, error): 받은 데이터를 읽음
+   5. func (c *TCPConn) Write(b []byte) (int,error): 데이터 보냄
+   6. func (c *TCPConn) Clsoe(): TCP 연결을 닫음
+
+   *** TCP 클라이언트
+   1. func Dial(network, address string) (Conn, error): 프로토콜, IP 주소, 포트번호를 설정 하고 서버 연결
+   2. func (c *TCPConn) Close() error: TCP 연결을 닫음
+   3. func (c *TCPConn) Read(b []byte)(int,error):받은 데이터 읽기
+   4. func (c *TCPConn) Write(b []byte)(int,error): 데이터를 보냄
+
+
+
+*** TCP 서버
+#+BEGIN_SRC
+
+func requestHandler(c net.Conn){
+	data := make([]byte,4096) //슬라이스 생성
+
+	for { // 무한 루프
+		n,err := c.Read(data)
+
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+
+		fmt.Println(string(data[:n])) //byte 데이터 문자열 출력
+
+		_,err = c.Wirte(data[:n])
+
+		if err != nil {
+			fmt.Println(err)
+
+			return
+		}
+	}
+
+	
+}
+
+func main(){
+	ln,err := net.Listen("tcp",":8000") // TCP Protocol 8000 open
+
+	if err != nil {
+		fmt.Println(err)
+		return 
+	}
+
+	defer ln.Close() //Main 함수 종료 전에 연결을 종료 
+
+	for{
+
+		conn,err := ln.Accept()
+
+		if err != nil {
+			fmt.Println(err)
+			continue
+		}
+
+		defer conn.Close()
+
+		go requestHandler(conn) //패킷 처리 함수 실행 
+
+		
+	}
+	
+}
+
+
+#+END_SRC
+
+
+
+*** TCP 클라이언트 
+#+BEGIN_SRC
+
+func main() {
+	client, err := net.Dial("tcp","127.0.0.1:8000")
+
+	if err != nil {
+		fmt.Println(err)
+
+		return
+	}
+
+	defer client.Close()
+
+
+	go func (c net.Conn){
+		data := make([]byte, 4096)
+
+		for {
+			n, err := c.Read(data)
+
+			if err != nil{
+				fmt.Println(err)
+				return
+			}
+
+			fmt.Println(string(data[:n]))
+
+			time.Sleep(1 * time.Second)
+
+		}
+		
+	}(client)
+
+	go func(c net.Conn){
+		i := 0
+
+		for {
+			s := "Hello" + strconv.Itoa(i)
+
+			_,err := c.Write([]byte(s))
+
+			if err != nil {
+				fmt.Println(err)
+				return 
+			}
+			i++
+			time.Sleep(1 * time.Second)
+			
+		}
+	}(client)
+
+	fmt.Scanln()
+}
+
+
+#+END_SRC
