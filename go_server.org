@@ -2,7 +2,7 @@
 #+STARTUP:showall
 
 ** Net Package 제공 함수
-   *** TCP 서버용
+*** TCP 서버용 함수
    1. func Listen(net, laddr string)(Listener,error):프로토콜, IP주소 , 포트 번호를 설정하고 네트워크 연결을 대기 합니다.
    2. func (I *TCPListener) Accept() (Conn,error): 클라이언트가 연결되면 TCP 연결을 반환 한다.
    3. func (I *TCPListener) Close() error: TCP 연결 대기를 닫는다.
@@ -10,7 +10,7 @@
    5. func (c *TCPConn) Write(b []byte) (int,error): 데이터 보냄
    6. func (c *TCPConn) Clsoe(): TCP 연결을 닫음
 
-   *** TCP 클라이언트
+*** TCP 클라이언트용 함수
    1. func Dial(network, address string) (Conn, error): 프로토콜, IP 주소, 포트번호를 설정 하고 서버 연결
    2. func (c *TCPConn) Close() error: TCP 연결을 닫음
    3. func (c *TCPConn) Read(b []byte)(int,error):받은 데이터 읽기
