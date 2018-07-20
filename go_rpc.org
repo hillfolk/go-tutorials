@@ -7,7 +7,14 @@ RPC(remote procedurce call,리모트 프로시저 콜)은 별도의 원격 제�
 Go 에서는 RPC는 Go 언어에서 기본 패키지로 지원하고있다 .
 
 ** Go RPC 프로토콜
+*** RPC Server 
    1. func Register(rcvr interface{})error: RPC 로 사용할 함수 등록
+
+*** RPC Client
+    1. func Dial(network,address string) (*Client error): 프로토콜, IP주소 포트번호를 설정하여 RPC 서버에 연결
+    2. func (client *Client) Call(serviceMethod string, args interface, reply interface{}) error: RPC 서버의 함수를 호출(동기)
+    3. func (client *Client) Go(serviceMethod string, args interface{},reply interface{}, done chan *Call) *Call: RPC 서버의 함수를 고루틴으로 호출(비동기)
+
   
 
 
