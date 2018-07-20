@@ -4,8 +4,11 @@
 ** RPC 프로토콜 
 RPC(remote procedurce call,리모트 프로시저 콜)은 별도의 원격 제어를 위한 코딩 없이 다른 주소 공간에서 함수나 프로시저를 실행할 수 있게 하는 프로세스 간 통신 기술이다. 프로그래머는 함수가 실행 프로그램에 로컬 위치에 있든 원격 위체 있든 동일한 코드를 이용할 수 있다. 
 객체 지향의 원칙을 사용하는 소프트웨어의 경우 원격 프로시저 호출을 원격 호출(remote invocation) 또는 원격 메소드 호출(remote method invocation)이라고 일컫는다.
+Go 에서는 RPC는 Go 언어에서 기본 패키지로 지원하고있다 .
 
-** Go RPC 프로토콜 
+** Go RPC 프로토콜
+   1. func Register(rcvr interface{})error: RPC 로 사용할 함수 등록
+  
 
 
 ** gRPC 사용하기 

@@ -10,4 +10,8 @@
 
 ** [[./go_cli.org][Go Command Line Interface]]
 
+** [[./go_tcp.org][Go TCP Server/Client]]
+
+** [[./go_rpc.org][Go RPC]]
+
 

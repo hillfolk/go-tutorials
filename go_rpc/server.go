@@ -1,27 +1,55 @@
 package server
 
-import "errors"
+import (
+	"fmt"
+	"net"
+	"net/rpc"
+)
+
+
+type Calc int
 
 type Args struct {
-	A, B int
+	A,B int
 }
 
-type Quotient struct {
-	Quo, Rem int
+type Reply struct {
+	C int
 }
 
-type Arith int
 
-func (t *Arith) Multiply(args *Args, reply *int) error {
-	*reply = args.A * args.B
+func(c *Calc) Sum(args Args, reply *Reply) error{
+
+	reply.C = args.A +args.B
+
 	return nil
 }
 
-func (t *Arith) Divide(args *Args, quo *Quotient) error {
-	if args.B == 0 {
-		return errors.New("divide by zero")
+func main() {
+	rpc.Register(new(Calc)) //Calc  타입의 인스턴스를 생성하여 서버에 등록
+
+	ln. err := net.Listen("tcp",":600")
+
+	if err != nil {
+		fmt.Println(err)
+		return 
 	}
-	quo.Quo = args.A / args.B
-	quo.Rem = args.A % args.B
-	return nil
+
+	defer ln.Close()
+
+
+	for {
+		conn, errr := ln.Accept()
+
+		if err != nil{
+			continue
+			
+		}
+
+		defer conn.Close()
+
+
+		go rpc.ServeConn(conn)
+	}
+	
 }
