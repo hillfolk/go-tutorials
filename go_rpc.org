@@ -10,12 +10,118 @@ Go 에서는 RPC는 Go 언어에서 기본 패키지로 지원하고있다 .
 *** RPC Server 
    1. func Register(rcvr interface{})error: RPC 로 사용할 함수 등록
 
+#+BEGIN_SRC
+package main
+
+import (
+	"fmt"
+	"net"
+	"net/rpc"
+)
+
+
+type Calc int
+
+type Args struct {
+	A,B int
+}
+
+type Reply struct {
+	C int
+}
+
+
+func(c *Calc) Sum(args Args, reply *Reply) error{
+
+	reply.C = args.A +args.B
+
+	return nil
+}
+
+func main() {
+	rpc.Register(new(Calc)) //Calc  타입의 인스턴스를 생성하여 서버에 등록
+
+	ln,err := net.Listen("tcp",":6000")
+
+	if err != nil {
+		fmt.Println(err)
+		return 
+	}
+
+	defer ln.Close()
+
+
+	for {
+		conn, err := ln.Accept()
+
+		if err != nil{
+			continue
+			
+		}
+
+		defer conn.Close()
+
+
+		go rpc.ServeConn(conn)
+	}
+	
+}
+
+#+END_SRC
+
+
 *** RPC Client
     1. func Dial(network,address string) (*Client error): 프로토콜, IP주소 포트번호를 설정하여 RPC 서버에 연결
     2. func (client *Client) Call(serviceMethod string, args interface, reply interface{}) error: RPC 서버의 함수를 호출(동기)
     3. func (client *Client) Go(serviceMethod string, args interface{},reply interface{}, done chan *Call) *Call: RPC 서버의 함수를 고루틴으로 호출(비동기)
+#+BEGIN_SRC
+package main
 
-  
+import (
+	"fmt"
+	"net/rpc"
+)
+
+type Args struct{
+	A,B int
+}
+
+type Reply struct {
+	C int
+}
+
+func main() {
+	client, err := rpc.Dial("tcp","127.0.0.1:6000")
+
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	defer client.Close()
 
 
-** gRPC 사용하기 
+	args := &Args{1,2}
+
+	reply := new(Reply)
+
+	err = client.Call("Calc.Sum",args,reply)
+
+	if err != nil {
+		fmt.Println(err)
+		return 
+	}
+
+	fmt.Println(reply.C)
+
+	args.A = 4
+	args.B = 9
+
+	sumCall := client.Go("Calc.Sum", args,reply,nil)
+
+	<-sumCall.Done
+	fmt.Println(reply.C)
+}
+
+#+END_SRC
+
