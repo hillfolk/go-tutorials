@@ -1,2 +1,2 @@
-#+TITLE:Go TCP/IP 서버 만들기
+#+TITLE:Go MessageSystem
 #+STARTUP:showall
