@@ -1,0 +1,18 @@
+#+TITLE: Go MongoDB 사용하기
+#+STARTUP:showall
+
+* MongoDB
+  MongoDB는 C++로 작성된 오픈소스 문서지향(Document-Oriented) 적 Cross-platform 데이터베이스이며, 뛰어난 확장성과 성능을 자랑합니다. 또한, 현존하는 NoSQL 데이터베이스 중 인지도 1위를 유지하고있습니다.
+
+* Go용 MongoDB 드라이버
+  Go 에서 Mongodb 용 라이브러리는 몇개 정도 지원 되는것으로 보인다. 그중에 mgo 기준으로 작성하려고 합니다. 
+  
+  [[https://github.com/globalsign/mgo][mgo github]]
+
+** Mongodb 연결
+
+#+BEGIN_SRC
+
+session, err := mgo.Dial(url) //연결 세선 획득 
+
+#+END_SRC
