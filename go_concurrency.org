@@ -33,7 +33,7 @@ func main() {
     fmt.Println(n)
 }
 
-#END_SRC
+#+END_SRC
 
 
 ** range close 사용하기
