@@ -1,7 +1,24 @@
-#+TITLE:Go MessageSystem
+#+TITLE:Go Messaging System
 #+STARTUP:showall
 
+<<<<<<< HEAD
 * Nats 
   Message Echo System
+=======
+* Intro
+  Nats Server는 클라우드 기본 으용 프로그램 IoT 메시징 및 마이크로 서비스 아키텍처를 위한 간단하고 고성능의 오픈소스 메시징 시스템 입니다. 
+  go로 작성되어 있으며 Python, Java, Ruby, Node.js 등으로 작성된 클라이언트를 만들었습니다. 
+
+* NATS Design Goals
+  The core principles underlying NATS are performance, scalability, and ease-of-use. Based on these principles, NATS is designed around the following core features:
+
+- Highly performant (fast)
+- Always on and available (dial tone) 
+- Extremely lightweight (small footprint)
+- Support for multiple qualities of service (including guaranteed “at-least-once” delivery with NATS Streaming) 
+- Support for various messaging models and use cases (flexible) 
+
+
+>>>>>>> 12449cfbb0be5829790fcd6cb91ac6c53979af7d
 
 
