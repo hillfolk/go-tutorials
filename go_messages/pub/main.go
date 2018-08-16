@@ -46,9 +46,11 @@ func main() {
 	defer nc.Close()
 
 	subj, msg := args[0], []byte(args[1])
-
-	nc.Publish(subj, msg)
-	nc.Flush()
+	
+	for  {
+		nc.Publish(subj, msg)
+		nc.Flush()
+	}
 
 	if err := nc.LastError(); err != nil {
 		log.Fatal(err)
