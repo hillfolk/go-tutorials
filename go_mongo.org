@@ -9,6 +9,8 @@
   
   [[https://github.com/globalsign/mgo][mgo github]]
 
+ https://github.com/mongodb/mongo-go-driver
+
 ** Mongodb 연결
 
 #+BEGIN_SRC
@@ -16,3 +18,12 @@
 session, err := mgo.Dial(url) //연결 세선 획득 
 
 #+END_SRC
+
+
+** Collection 
+
+
+** Update Documents
+
+
+** Find Documents
