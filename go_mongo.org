@@ -1,11 +1,12 @@
-#+TITLE:Go 에서 MongoDB사용하기 
+#+TITLE: Go MongoDB 사용하기
 #+STARTUP:showall
 
+* MongoDB
+  MongoDB는 C++로 작성된 오픈소스 문서지향(Document-Oriented) 적 Cross-platform 데이터베이스이며, 뛰어난 확장성과 성능을 자랑합니다. 또한, 현존하는 NoSQL 데이터베이스 중 인지도 1위를 유지하고있습니다.
 
-** MongoDB Go Driver 설치하기
-   MongoDB 에서는 Go 공식 드라이버를 제공하고 있다 . 해당 
+* Go용 MongoDB 드라이버
+  Go 에서 Mongodb 용 라이브러리는 몇개 정도 지원 되는것으로 보인다. 그중에 mongo-go-driver 공식 Go 드라이버를 기준으로 작성 하였습니다.
 
-   go get 주소
 
    
 
@@ -16,5 +17,3 @@
 ** 참고
     - https://www.mongodb.com/blog/post/mongodb-go-driver-tutorial
     - https://www.mongodb.com/blog/post/go-migration-guide
-
-

@@ -1,0 +1,18 @@
+#+TITLE:Go Cobra 사용하기 
+#+STARTUP:showall
+
+
+
+Cobra는 강력한 Cli 라이브러리로서 Go 기반에서 구동된다. 해당 모듈은 docker, kubernetes, hugo 등에서 사용될 정도로 안정적인 라이브러리 이다. 
+
+
+[[https://github.com/spf13/cobra][cobra github]]
+
+** Install 
+
+** 초기 설정
+   
+
+** 명령어 추가 
+
+** Flags 
