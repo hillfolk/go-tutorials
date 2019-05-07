@@ -9,13 +9,14 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"go.mongodb.org/mongo-driver/mongo/readpref"
+	_"go.mongodb.org/mongo-driver/mongo/readpref"
 )
 
 type Trainer struct {
-	Name string
-	Age int
-	City string
+	Name string `json:"name" bson:"name"`
+	Age int `json:"age" bson:"age"`
+	City string `json:"city" bson:"city"`
+	Created time.Time `json:"created" bson:"created"`
 }
 
 func main(){
@@ -32,11 +33,6 @@ func main(){
 
 	
 	// 연결 체크 
-	err = client.Ping(ctx,readpref.Primary())
-
-	if err != nil {
-		log.Fatal(err)
-	}
 
 	fmt.Println("Connected to MongoDB!")
 
@@ -46,9 +42,9 @@ func main(){
 
 	
 	//입력할 데이터 
-	ash := Trainer{"Ash", 10, "Pallet Town"}
-	misty := Trainer{"Misty", 10, "Cerulean City"}
-	brock := Trainer{"Brock", 15, "Pewter City"}
+	ash := Trainer{"Ash", 10, "Pallet Town",time.Now()}
+	misty := Trainer{"Misty", 10, "Cerulean City",time.Now()}
+	brock := Trainer{"Brock", 15, "Pewter City",time.Now()}
 
 	//1개의 Document 추가하기
 	insertResult, err := collection.InsertOne(context.TODO(), ash)
@@ -74,13 +70,19 @@ func main(){
 	// 업데이트
 	filter := bson.D{{"name", "Ash"}}
 
-	update := bson.D{
-		{"$inc", bson.D{
-			{"age", 1},
-		}},
-	}
 
-	updateResult, err := collection.UpdateOne(context.TODO(), filter, update)
+
+	if err != nil {
+	log.Fatal(err)
+	}
+	ash.Age = 120
+	update := bson.D{
+		{"$set", ash}}
+	updateOption := options.Update()
+	updateOption.SetUpsert(true)
+	
+	
+	updateResult, err := collection.UpdateOne(context.TODO(), filter,update,updateOption )
 	if err != nil {
 		log.Fatal(err)
 	}
