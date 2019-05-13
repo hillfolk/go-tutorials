@@ -1,5 +1,23 @@
+#+STARTUP: overview
+#+STARTUP: content
+#+STARTUP: showall
+#+STARTUP: showeverything
+
+#+hugo_base_dir: ~/sites/hillfolk/
+#+hugo_section: ./posts
+
+#+hugo_weight: 100
+#+hugo_auto_set_lastmod: t
+
 #+TITLE:Go Cli 프로그램 만들기
-#+STARTUP:showall
+
+#+DATE: 2019-03-20
+#+Author: Hillfolk
+
+#+hugo_tags:HA Linux High_ailability
+#+hugo_categories: posts
+#+hugo_draft: true
+
 
 ** Command-line flags
 
@@ -75,8 +93,6 @@ exit status 2
 
 
 #+END_SRC
-
-
 
 
 
