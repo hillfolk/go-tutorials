@@ -15,5 +15,3 @@
 ** [[./go_rpc.org][Go RPC]]
 
 ** [[./go_mongo.org][Go MongoDB]]
-
-

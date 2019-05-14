@@ -1,5 +1,22 @@
+#+STARTUP: overview
+#+STARTUP: content
+#+STARTUP: showall
+#+STARTUP: showeverything
+
+#+hugo_base_dir: ~/sites/hillfolk/
+#+hugo_section: ./posts
+
+#+hugo_weight: 100
+#+hugo_auto_set_lastmod: t
+
 #+TITLE: Go MongoDB 사용하기
-#+STARTUP:showall
+
+#+DATE: 2019-05-01
+#+Author: Hillfolk
+
+#+hugo_tags:go MongoDB go-mongo-driver
+#+hugo_categories: posts
+#+hugo_draft: true
 
 ** MongoDB
   MongoDB는 C++로 작성된 오픈소스 문서지향(Document-Oriented) 적 Cross-platform 데이터베이스이며, 뛰어난 확장성과 성능을 가지고 있다. 
