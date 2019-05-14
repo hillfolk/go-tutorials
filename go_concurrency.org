@@ -1,5 +1,23 @@
-#+TITLE:Go 동시성 프로그래밍 하기
 #+STARTUP:showall
+#+STARTUP: overview
+#+STARTUP: content
+#+STARTUP: showall
+#+STARTUP: showeverything
+
+#+hugo_base_dir: ~/sites/hillfolk/
+#+hugo_section: ./posts
+
+#+hugo_weight: 100
+#+hugo_auto_set_lastmod: t
+
+#+TITLE:Go 동시성 프로그래밍 하기
+
+#+DATE: 2019-05-03
+#+Author: Hillfolk
+
+#+hugo_tags:go concurrency channel goroutine
+#+hugo_categories: posts
+#+hugo_draft: true
 
 ** Goroutine
    - 고루틴은 함수를 동시에 실행시키는 기능이다.
@@ -38,7 +56,7 @@ func main() {
 
 ** range close 사용하기
 
-   - close 는 채널을 닫을 수 있으며 이미 닫은 채널을 다으면 패닉 발생
+   - close 는 채널을 닫을 수 있으며 이미 닫은 채널을 닫게되면 패닉 발생
    - 채널을 닫으면 range 푸르가 종료 됩니다.
    - 채널이 열려 있고 값이 들어 오지 않으면 range 는 실행되지 않고 계속 대기 한다.
 
