@@ -1,6 +1,0 @@
-#+TITLE:Go 종속성 관리하기
-#+STARTUP:showall
-
-* 설치
-
-* 사용법
