@@ -4,7 +4,7 @@
 
 ** [[./go_oop.org][Go Object Oriented Programming]]
 
-** [[go_http.org][Go Web Programming]]
+** [[./go_web.org][Go Web Programming]]
 
 ** [[./go_concurrency.org][Go Concurrency]]
 
