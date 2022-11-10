@@ -1,6 +1,6 @@
 module github.com/hillfolk/go_dev_document
 
-go 1.12
+go 1.19
 
 require (
 	github.com/google/go-cmp v0.5.8 // indirect
